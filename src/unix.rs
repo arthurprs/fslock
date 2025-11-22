@@ -232,8 +232,9 @@ fn make_os_str<'a>(slice: &'a [u8]) -> Result<EitherOsStr<'a>, Error> {
             panic!("Path to file cannot contain nul-byte in the middle");
         }
         if last == 0 {
-            let str =
-                unsafe { OsStr::from_slice(transmute::<&[u8], &[i8]>(slice)) };
+            let str = unsafe {
+                OsStr::from_slice(transmute::<&[u8], &[libc::c_char]>(slice))
+            };
             return Ok(EitherOsStr::Borrowed(str));
         }
     }

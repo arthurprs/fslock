@@ -9,11 +9,15 @@ jobs:
       matrix:
         os:
           - code: ubuntu-latest
-            name: Linux
+            name: Linux (latest)
+          - code: ubuntu-24.04-arm
+            name: Linux (Ubuntu 24.04 arm64)
           - code: windows-latest
-            name: Windows
+            name: Windows (latest)
+          - code: windows-11-arm
+            name: Windows (w11 arm64)
           - code: macos-latest
-            name: MacOS
+            name: MacOS (latest)
     name: Check ${{ matrix.os.name }}
     runs-on: ${{ matrix.os.code }}
     env:
